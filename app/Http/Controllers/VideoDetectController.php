@@ -67,8 +67,8 @@ class VideoDetectController extends Controller
         ]);
 
         // Execute Python script
-        $cmd = 'start cmd /k "python main.py"';
-        exec($cmd);
+        // $cmd = 'start cmd /k "python main.py"';
+        // exec($cmd);
 
         return redirect()->back()->with(['success' => 'Video detection uploaded.', 'videodetect' => $videodetect]);
     }
