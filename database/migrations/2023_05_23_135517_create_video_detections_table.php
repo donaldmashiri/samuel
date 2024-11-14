@@ -14,16 +14,11 @@ return new class extends Migration
         Schema::create('video_detections', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('plate_number')->nullable();
             $table->text('file')->nullable();
             $table->string('detection_type');
             $table->string('status');
             $table->string('signal_type');
-            $table->string('lane_position');
-            $table->string('wheel_crossed');
-            $table->string('marking_color');
-            $table->string('cross_alert');
-            $table->string('driver_tendencies');
+            $table->string(column: 'mineral');
             $table->timestamps();
         });
     }

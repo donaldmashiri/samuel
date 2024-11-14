@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'name' => 'Samuel',
                 'email' => 'admin@admin.com',
                 'national_id' => '12345678',
-                'dob' => 'Mineral',
+                'dob' => '12122000',
                 'password' => Hash::make('password')
             ]);
         }

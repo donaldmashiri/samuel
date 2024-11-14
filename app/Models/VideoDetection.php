@@ -11,16 +11,11 @@ class VideoDetection extends Model
 
     protected $fillable = [
         'user_id',
-        'plate_number',
         'detection_type',
         'file',
         'status',
         'signal_type',
-        'lane_position',
-        'wheel_crossed',
-        'marking_color',
-        'cross_alert',
-        'driver_tendencies',
+        'mineral',
     ];
 
 }
