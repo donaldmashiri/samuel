@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CameraDetection;
 use App\Models\User;
 use App\Models\Vehicle;
+use App\Models\VideoDetection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,8 @@ class DetectionsController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::where('user_id', Auth::user()->id)->get();
-        return view('detections.index', compact('vehicles'));
+        $detects = VideoDetection::all();
+        return view('detections.index', compact('detects'));
     }
 
     /**

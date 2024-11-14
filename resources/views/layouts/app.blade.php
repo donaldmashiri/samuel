@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <title>ZINARA LANE DETECTION </title>
+    <title>Mineral DETECTION </title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/zinara2.png') }}">
 
     <!-- Fonts -->

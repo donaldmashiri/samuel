@@ -30,24 +30,7 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'make' => ['required', 'string', 'max:255'],
-            'model' => ['required', 'string', 'max:255'],
-            'year' => ['required', 'string', 'max:255'],
-            'engine_number' => ['required', 'string', 'max:255', 'unique:vehicles'],
-            'plate_number' => ['required', 'string', 'regex:/^[A-Z]{3}\d{4}$/', 'max:255', 'unique:vehicles'],
-        ]);
-
-        Vehicle::create([
-            "user_id" => request('user_id'),
-            "make" => request('make'),
-            "model" => request('model'),
-            "year" => request('year'),
-            "plate_number" => request('plate_number'),
-            "engine_number" => request('engine_number'),
-        ]);
-
-        return redirect()->back()->with('success', 'Vehicles Successfully added.');
+       
     }
 
     /**

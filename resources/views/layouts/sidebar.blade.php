@@ -13,7 +13,7 @@
     </li>
 @else
     <li class="nav-item ">
-        <a class="nav-link collapsed " href="{{ route('detections.index') }}"><i class="fas fa-fw fa-comment"></i>Image Detections</a>
+        <a class="nav-link collapsed " href="{{ route('detections.index') }}"><i class="fas fa-fw fa-comment"></i> Detections</a>
     </li>
     <li class="nav-item ">
         <a class="nav-link collapsed " href="{{ route('videodetects.index') }}"><i class="fas fa-fw fa-comment"></i>Video Detections</a>

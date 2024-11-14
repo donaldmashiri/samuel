@@ -39,7 +39,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $role = 'driver';
+        $role = 'geologist';
         $password = $request->input('password');
 
         User::create([
@@ -64,9 +64,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $vehicles = Vehicle::where('user_id', $id)->get();
-        $user = User::find($id);
-        return view('users.show', compact('vehicles', 'user'));
+        // $vehicles = Vehicle::where('user_id', $id)->get();
+        // $user = User::find($id);
+        // return view('users.show', compact('vehicles', 'user'));
 
 
 //        $user = \DB::table('users')->where('id', $id)->get();
