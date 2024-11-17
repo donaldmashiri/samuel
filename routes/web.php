@@ -25,7 +25,7 @@ Route::resource('detections', \App\Http\Controllers\DetectionsController::class)
 Route::resource('videodetects', \App\Http\Controllers\VideoDetectController::class);
 Route::resource('users', \App\Http\Controllers\UserController::class);
 Route::resource('markings', \App\Http\Controllers\MarkingsController::class);
-Route::resource('vehicles', \App\Http\Controllers\VehicleController::class);
+Route::resource('minerals', \App\Http\Controllers\MineralController::class);
 
 Auth::routes();
 

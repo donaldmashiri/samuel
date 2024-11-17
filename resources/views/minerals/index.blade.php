@@ -17,38 +17,38 @@
                     <!-- Card Header - Dropdown -->
                     <div
                         class="card-header bg-gradient-secondary py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-white">Markings</h6>
+                        <h6 class="m-0 font-weight-bold text-white">Minerals</h6>
                         <div class="justify-content-end">
-                            <a href="" class="btn btn-success btn-sm justify-content-end"  data-bs-toggle="modal" data-bs-target="#markings"> Add New Markings</a>
+                            <a href="" class="btn btn-success btn-sm justify-content-end"  data-bs-toggle="modal" data-bs-target="#markings"> Add New Mineral</a>
                         </div>
                     </div>
 
                     <!-- Card Body -->
                     <div class="card-body">
                         @include('partials.errors')
-                        @if($markings->count() > 0)
+                        @if($minerals->count() > 0)
                         <table class="table table-bordered table-sm">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Color</th>
                                 <th scope="col">Date Added</th>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($markings as $marking)
+                            @foreach($minerals as $mineral)
                                 <tr>
-                                    <th>{{ $marking->id }}</th>
-                                    <td>{{ $marking->name}}</td>
-                                    <td><p style="background-color: #{{ $marking->color}}">{{ $marking->color}}</p></td>
-                                    <td>{{ $marking->created_at}}</td>
+                                    <th>{{ $mineral->id }}</th>
+                                    <td>{{ $mineral->name}}</td>
+                                    <td>{{ $mineral->created_at}}</td>
+                                    <td><a href="{{ route('minerals.destroy', $mineral->id) }}" class="btn btn-danger btn-sm">Delete</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         @else
-                            <h3 class='text-center alert alert-danger'>No Markings Created</h3>
+                            <h3 class='text-center alert alert-danger'>No Minerals Created</h3>
                         @endif
                     </div>
                 </div>

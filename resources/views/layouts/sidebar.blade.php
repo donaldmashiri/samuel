@@ -1,24 +1,24 @@
 <li class="nav-item ">
     <a class="nav-link collapsed " href="/profile"><i class="fas fa-fw fa-user"></i>Profile   </a>
 </li>
-@if(Auth::user()->role === "admin")
+{{--@if(Auth::user()->role === "admin")--}}
     <li class="nav-item ">
         <a class="nav-link collapsed " href="{{ route('users.index') }}"><i class="fas fa-fw fa-car"></i>Users</a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link collapsed " href="{{ route('markings.index') }}"><i class="fas fa-fw fa-marker"></i>Mineral Markings</a>
+        <a class="nav-link collapsed " href="{{ route('minerals.index') }}"><i class="fas fa-fw fa-marker"></i>Minerals</a>
     </li>
     <li class="nav-item ">
         <a class="nav-link collapsed " href="/reports"><i class="fas fa-fw fa-file-download"></i>Reports</a>
     </li>
-@else
+{{--@else--}}
     <li class="nav-item ">
         <a class="nav-link collapsed " href="{{ route('detections.index') }}"><i class="fas fa-fw fa-comment"></i> Detections</a>
     </li>
     <li class="nav-item ">
         <a class="nav-link collapsed " href="{{ route('videodetects.index') }}"><i class="fas fa-fw fa-comment"></i>Video/Image Detections</a>
     </li>
-@endif
+{{--@endif--}}
 
 
 
