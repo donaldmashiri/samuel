@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CameraDetection;
+use App\Models\Mineral;
 use App\Models\Vehicle;
 use App\Models\VideoDetection;
 use Illuminate\Http\Request;
@@ -50,6 +51,7 @@ class VideoDetectController extends Controller
         $file = 'example.jpg';
         $status = ['Active', 'Inactive'][array_rand(['Active', 'Inactive'])];
         $signal_type = ['Green', 'Yellow', 'Red'][array_rand(['Green', 'Yellow', 'Red'])];
+        $otherMinerals = Mineral::all();
         $minerals = ['Quartz', 'Feldspar', 'Mica', 'Amethyst', 'Calcite', 'Fluorite', 'Gypsum', 'Halite'];
 
         // Select a random mineral

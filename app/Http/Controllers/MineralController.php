@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mineral;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class MineralController extends Controller
 {
     /**
@@ -21,7 +21,7 @@ class MineralController extends Controller
      */
     public function create()
     {
-        //
+        return view('minerals.create');
     }
 
     /**
@@ -29,7 +29,25 @@ class MineralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:minerals,slug',
+        ]);
+
+        // Retrieve the name from the request
+        $name = $request->input('name');
+        $slug = $request->input('slug');
+
+
+        // Create a new mineral record
+        $mineral = Mineral::firstOrcreate([
+            'name' => $name,
+            'slug' => $slug ?: Str::slug($name), // Generate a slug if none is provided
+        ]);
+
+
+        return redirect(route('minerals.index'))->with(['success' => 'Mineral Successfully added.']);
+
     }
 
     /**

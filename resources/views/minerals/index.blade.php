@@ -19,7 +19,7 @@
                         class="card-header bg-gradient-secondary py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-white">Minerals</h6>
                         <div class="justify-content-end">
-                            <a href="" class="btn btn-success btn-sm justify-content-end"  data-bs-toggle="modal" data-bs-target="#markings"> Add New Mineral</a>
+                            <a href="{{ route("minerals.create") }}" class="btn btn-success btn-sm justify-content-end" > Add New Mineral</a>
                         </div>
                     </div>
 
