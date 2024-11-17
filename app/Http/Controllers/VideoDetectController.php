@@ -51,11 +51,18 @@ class VideoDetectController extends Controller
         $file = 'example.jpg';
         $status = ['Active', 'Inactive'][array_rand(['Active', 'Inactive'])];
         $signal_type = ['Green', 'Yellow', 'Red'][array_rand(['Green', 'Yellow', 'Red'])];
-        $otherMinerals = Mineral::all();
+        // Fetch all minerals from the database
+        $otherMinerals = Mineral::all()->pluck('name')->toArray();
+
+// Predefined minerals array
         $minerals = ['Quartz', 'Feldspar', 'Mica', 'Amethyst', 'Calcite', 'Fluorite', 'Gypsum', 'Halite'];
 
-        // Select a random mineral
-        $randomMineral = $minerals[array_rand($minerals)];
+// Merge the two arrays
+        $allMinerals = array_merge($minerals, $otherMinerals);
+
+// Select a random mineral from the merged array
+        $randomKey = array_rand($allMinerals); // Get a random key
+        $randomMineral = $allMinerals[$randomKey];
 
         // Create a new VideoDetection record
         $videodetect = VideoDetection::create([

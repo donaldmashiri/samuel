@@ -23,7 +23,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
 
-                        @include('partials.errors')
+{{--                        @include('partials.errors')--}}
                         <h1>Video Detection</h1>
 
 
@@ -31,7 +31,8 @@
 
                         <div class="container">
 
-                            <form action="{{route('videodetects.store')}}" method="POST" enctype="multipart/form-data">
+
+                            <form action="{{ route('videodetects.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
@@ -39,11 +40,10 @@
                                     <input type="file" class="form-control" name="upload_video">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Upload</button>
-
                             </form>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     @if (session('success'))
                                         <div class="alert alert-success" role="alert">
                                             <div class="card">
@@ -73,7 +73,7 @@
                                                         <p>Detection Type: {{ $videodetect->detection_type }}</p>
                                                         <p>Status: {{ $videodetect->status }}</p>
                                                         <p>Signal Type: {{ $videodetect->signal_type }}</p>
-                                                       
+
                                                     </div>
                                                 @endif
 

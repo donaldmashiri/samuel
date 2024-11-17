@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CameraDetection;
 use App\Models\Marking;
+use App\Models\Mineral;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VideoDetection;
@@ -39,14 +40,10 @@ class HomeController extends Controller
     public function reports()
     {
         $usersTotal = User::count();
-        $vehiclesTotal = Vehicle::count();
-        $markingsTotal = Marking::count();
-        $cameraDetectionsTotal = CameraDetection::count();
+        $mineralsTotal = Mineral::count();
         $videoDetectionsTotal = VideoDetection::count();
-        $cameraDetections = CameraDetection::paginate(1); // Paginate with 10 items per page
-        $videoDetections = VideoDetection::all();
-        return view('reports', compact('usersTotal', 'vehiclesTotal', 'markingsTotal', 'videoDetectionsTotal', 'cameraDetectionsTotal',
-            'cameraDetections', 'videoDetections'));
+        $detects = VideoDetection::all();
+        return view('reports', compact('usersTotal', 'mineralsTotal', 'detects', 'videoDetectionsTotal'));
     }
 
 }

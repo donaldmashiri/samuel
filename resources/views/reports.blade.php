@@ -50,8 +50,8 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Vehicles</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $vehiclesTotal }}</div>
+                                                    Minerals</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mineralsTotal }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-caravan fa-2x text-gray-300"></i>
@@ -61,52 +61,6 @@
                                 </div>
                             </div>
 
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-2 col-md-3 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Color Markings
-                                                </div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $markingsTotal }}</div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-danger" role="progressbar"
-                                                                 style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                 aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-{{--                            <!-- Pending Requests Card Example -->--}}
-                            <div class="col-xl-2 col-md-3 mb-4">
-                                <div class="card border-left-danger shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                    Camera Detections</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cameraDetectionsTotal }}</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-camera fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="col-xl-2 col-md-3 mb-4">
                                 <div class="card border-left-dark shadow h-100 py-2">
@@ -141,9 +95,7 @@
                                                <div class="col">
                                                    <input class="form-control form-group col" type="text" id="filterUserId" placeholder="User ID">
                                                </div>
-                                               <div class="col">
-                                                   <input class="form-control form-group col" type="text" id="filterPlateNumber" placeholder="Plate Number">
-                                               </div>
+
                                                <div class="col">
                                                    <select class="form-control form-group col" id="filterStatus">
                                                        <option value="">Select Status</option>
@@ -160,31 +112,23 @@
                                         <table id="videoDetectionTable" class="table table-bordered table-sm">
                                             <thead class="bg-gradient-dark">
                                             <tr>
-                                                <th scope="col">User ID</th>
-                                                <th scope="col">Plate #</th>
-                                                <th scope="col">Detection Type</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Signals Type</th>
-                                                <th scope="col">Lane</th>
-                                                <th scope="col">Wheels Crossed</th>
-                                                <th scope="col">Markings Color</th>
-                                                <th scope="col">Cross Alert</th>
-                                                <th scope="col">Driver tendencies</th>
+                                                <th>Detection Type</th>
+                                                <th>File</th>
+                                                <th>Status</th>
+                                                <th>Signal Type</th>
+                                                <th>Mineral</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($videoDetections as $videoDetection)
+                                            @foreach($detects as $detect)
                                                 <tr>
-                                                    <td>00{{ $videoDetection->user_id }}</td>
-                                                    <td>{{ $videoDetection->plate_number }}</td>
-                                                    <td class="text-danger">Video Detection</td>
-                                                    <td>{{ $videoDetection->status }}</td>
-                                                    <td>{{ $videoDetection->signal_type }}</td>
-                                                    <td>{{ $videoDetection->lane_position }}</td>
-                                                    <td>{{ $videoDetection->wheel_crossed }}</td>
-                                                    <td>{{ $videoDetection->marking_color }}</td>
-                                                    <td>{{ $videoDetection->cross_alert }}</td>
-                                                    <td>{{ $videoDetection->driver_tendencies }}</td>
+                                                    <td>{{ $detect->detection_type }}</td>
+                                                    <td>
+                                                        <a target="_blank" href="{{ asset($detect->file)}}" download>File</a>
+                                                    </td>
+                                                    <td>{{ $detect->status }}</td>
+                                                    <td>{{ $detect->signal_type }}</td>
+                                                    <td>{{ $detect->mineral }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -192,84 +136,8 @@
 
 {{--                                        {{ $videoDetections->links() }}--}}
 
-                                        <script>
-                                            function filterTable() {
-                                                var userId = document.getElementById('filterUserId').value.toLowerCase();
-                                                var plateNumber = document.getElementById('filterPlateNumber').value.toLowerCase();
-                                                var status = document.getElementById('filterStatus').value.toLowerCase();
-                                                var table = document.getElementById('videoDetectionTable');
-                                                var rows = table.getElementsByTagName('tr');
-
-                                                for (var i = 0; i < rows.length; i++) {
-                                                    var userIdCell = rows[i].getElementsByTagName('td')[0];
-                                                    var plateNumberCell = rows[i].getElementsByTagName('td')[1];
-                                                    var statusCell = rows[i].getElementsByTagName('td')[3];
-
-                                                    if (userIdCell && plateNumberCell && statusCell) {
-                                                        var userIdValue = userIdCell.textContent || userIdCell.innerText;
-                                                        var plateNumberValue = plateNumberCell.textContent || plateNumberCell.innerText;
-                                                        var statusValue = statusCell.textContent || statusCell.innerText;
-
-                                                        if ((userIdValue.toLowerCase().indexOf(userId) > -1 || userId === '') &&
-                                                            (plateNumberValue.toLowerCase().indexOf(plateNumber) > -1 || plateNumber === '') &&
-                                                            (statusValue.toLowerCase() === status || status === '')) {
-                                                            rows[i].style.display = '';
-                                                        } else {
-                                                            rows[i].style.display = 'none';
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Camera Row -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header bg-gradient-dark">Camera Detection Reports</div>
-                                    <div class="card-body">
-
-                                        <table id="cameraDetectionTable" class="table table-bordered table-sm">
-                                            <thead class="bg-gradient-light">
-                                            <tr>
-                                                <th scope="col">User ID</th>
-                                                <th scope="col">Plate #</th>
-                                                <th scope="col">Detection Type</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Signals Type</th>
-                                                <th scope="col">Lane</th>
-                                                <th scope="col">Wheels Crossed</th>
-                                                <th scope="col">Markings Color</th>
-                                                <th scope="col">Cross Alert</th>
-                                                <th scope="col">Driver tendencies</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($cameraDetections as $cameraDetection)
-                                                <tr>
-                                                    <th>00{{ $cameraDetection->user_id }}</th>
-                                                    <th>{{ $cameraDetection->plate_number }}</th>
-                                                    <th class="text-success">Camera Detection</th>
-                                                    <th>{{ $cameraDetection->status }}</th>
-                                                    <th>{{ $cameraDetection->signal_type }}</th>
-                                                    <th>{{ $cameraDetection->lane_position }}</th>
-                                                    <th>{{ $cameraDetection->wheel_crossed }}</th>
-                                                    <th>{{ $cameraDetection->marking_color }}</th>
-                                                    <th>{{ $cameraDetection->cross_alert }}</th>
-                                                    <th>{{ $cameraDetection->driver_tendencies }}</th>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-
-                                        {{ $cameraDetections->links() }}
 
                                     </div>
-
                                 </div>
                             </div>
                         </div>
